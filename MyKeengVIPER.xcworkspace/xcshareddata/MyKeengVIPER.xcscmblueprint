@@ -1,0 +1,24 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C0631483086A726C6CF170D9D7205B6081C29000",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C0631483086A726C6CF170D9D7205B6081C29000" : 0,
+    "155A03E2AEE7A3D1515165C76FBA642D9E03EA8E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D09DCD8B-90A2-4534-A50F-B1242486182A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C0631483086A726C6CF170D9D7205B6081C29000" : "MyKeengVIPER\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MyKeengVIPER",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MyKeengVIPER.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/whisky87\/MyKeengVIPER.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C0631483086A726C6CF170D9D7205B6081C29000"
+    }
+  ]
+}

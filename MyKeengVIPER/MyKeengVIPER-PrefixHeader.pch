@@ -1,0 +1,43 @@
+//
+//  MyKeengVIPER-PrefixHeader.pch
+//  MyKeengVIPER
+//
+//  Created by Le Van Binh on 10/3/16.
+//  Copyright © 2016 LBComp. All rights reserved.
+//
+
+#ifndef MyKeengVIPER_PrefixHeader_pch
+#define MyKeengVIPER_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+#import "LBRestfulConstants.h"
+#import "LBMediaConstants.h"
+
+
+#endif
+
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+#define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
+#define methodNotImplemented() mustOverride()
+
+
+// check device orientation
+#define dDeviceOrientation [[UIDevice currentDevice] orientation]
+#define isPortrait  UIDeviceOrientationIsPortrait(dDeviceOrientation)
+#define isLandscape UIDeviceOrientationIsLandscape(dDeviceOrientation)
+#define isFaceUp    dDeviceOrientation == UIDeviceOrientationFaceUp   ? YES : NO
+#define isFaceDown  dDeviceOrientation == UIDeviceOrientationFaceDown ? YES : NO
+
+
+
+#endif /* MyKeengVIPER_PrefixHeader_pch */
