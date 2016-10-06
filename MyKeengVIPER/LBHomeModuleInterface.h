@@ -28,7 +28,7 @@
 
 @protocol LBHomeModuleInterface <NSObject>
 
--(void)updateView:(LBMediaType)dataType;
+-(void)updateView;
 @end
 
 

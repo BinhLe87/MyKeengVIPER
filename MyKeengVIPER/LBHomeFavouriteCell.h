@@ -13,7 +13,6 @@
 
 @property (nonnull) UIScrollView *scrollView;
 
--(instancetype)initWithFrameAndContentSize:(CGRect)frame contentSize:(CGSize)contentSize;
 
 -(void)setFavourites:(NSArray<LBMedia*> *)medias;
 +(CGFloat)heightForFavouriteCell;

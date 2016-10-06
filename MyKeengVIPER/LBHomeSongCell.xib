@@ -16,6 +16,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="433" height="141.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-8c-3SQ" userLabel="SeperatorLine">
+                        <rect key="frame" x="0.0" y="140.5" width="433" height="1"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="PCj-ie-2Cn"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrC-xZ-gFE">
                         <rect key="frame" x="100" y="10" width="44.5" height="21"/>
                         <constraints>
@@ -93,6 +100,7 @@
                 <constraints>
                     <constraint firstItem="fdi-MI-22E" firstAttribute="leading" secondItem="bLL-Yq-keZ" secondAttribute="leading" constant="10" identifier="SongImg_Leading_SuperView" id="2QK-qZ-VuJ"/>
                     <constraint firstItem="2K8-V6-jhx" firstAttribute="leading" secondItem="CrC-xZ-gFE" secondAttribute="leading" id="5BN-pT-P41"/>
+                    <constraint firstItem="D3e-8c-3SQ" firstAttribute="leading" secondItem="bLL-Yq-keZ" secondAttribute="leading" id="AKk-nm-H20"/>
                     <constraint firstItem="CrC-xZ-gFE" firstAttribute="top" secondItem="fdi-MI-22E" secondAttribute="top" id="BdD-ue-OPf"/>
                     <constraint firstItem="fb4-eE-pFa" firstAttribute="leading" secondItem="fdi-MI-22E" secondAttribute="leading" id="GWW-oW-vl9"/>
                     <constraint firstItem="fb4-eE-pFa" firstAttribute="top" secondItem="fdi-MI-22E" secondAttribute="bottom" constant="8" id="GmF-YO-zL4"/>
@@ -109,8 +117,10 @@
                     <constraint firstItem="POg-Pf-nnT" firstAttribute="top" secondItem="bLL-Yq-keZ" secondAttribute="topMargin" constant="20" id="gIG-uA-PFx"/>
                     <constraint firstItem="hgM-cD-q8b" firstAttribute="leading" secondItem="fb4-eE-pFa" secondAttribute="trailing" constant="10" id="h7K-89-RQE"/>
                     <constraint firstItem="Dsb-nS-cyN" firstAttribute="leading" secondItem="2K8-V6-jhx" secondAttribute="trailing" constant="2" id="i6R-hR-dT7"/>
+                    <constraint firstAttribute="trailing" secondItem="D3e-8c-3SQ" secondAttribute="trailing" id="ioX-ca-h3G"/>
                     <constraint firstItem="fdi-MI-22E" firstAttribute="top" secondItem="bLL-Yq-keZ" secondAttribute="topMargin" constant="10" id="kEF-FD-bcN"/>
                     <constraint firstItem="fdi-MI-22E" firstAttribute="leading" secondItem="bLL-Yq-keZ" secondAttribute="leadingMargin" constant="10" id="pLA-Dj-TNN"/>
+                    <constraint firstAttribute="bottom" secondItem="D3e-8c-3SQ" secondAttribute="bottom" id="qL4-Fk-2yV"/>
                     <constraint firstItem="Dsb-nS-cyN" firstAttribute="height" secondItem="2K8-V6-jhx" secondAttribute="height" id="re9-XY-qG7"/>
                     <constraint firstItem="Dsb-nS-cyN" firstAttribute="height" secondItem="2K8-V6-jhx" secondAttribute="height" id="tO6-6w-FEb"/>
                     <constraint firstItem="9tG-q1-hr0" firstAttribute="leading" secondItem="CrC-xZ-gFE" secondAttribute="leading" id="u0C-V7-Dj0"/>

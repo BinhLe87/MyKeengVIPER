@@ -14,6 +14,8 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
+    
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 

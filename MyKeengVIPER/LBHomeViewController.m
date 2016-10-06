@@ -14,22 +14,21 @@
 #import "LBHomePhotoFiltration.h"
 #import "UIImageView+WebCache.h"
 #import "LBMediaConstants.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 
 
 typedef NS_ENUM(NSUInteger, TableSectionType) {
     
-    TableSectionTypeVideo = 2,
-    TableSectionTypeSong = 0,
+    TableSectionTypeVideo = 0,
+    TableSectionTypeSong = 2,
     TableSectionTypeFavourite = 1
 };
-
 
 
 @implementation LBHomeViewController {
     
     int HOMENEW_CELL_WIDTH_NEW;
-    LBMediaType mediaType;
 }
 
 
@@ -80,14 +79,20 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
     [super viewDidLoad];
     
     HOMENEW_CELL_WIDTH_NEW = CGRectGetWidth(self.view.bounds);
-    mediaType = LBMediaTypeVideo | LBMediaTypeSong | LBMediaTypeFavourite;
     self.navigationController.delegate = self;
     
     //register LBHomeNewSongCell nib file
-    _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc] init];
     _tableview.delegate = self;
     _tableview.dataSource = self;
     [self.view addSubview:_tableview];
+    
+    //layout tableview
+    NSDictionary *metrics = nil;
+    NSDictionary *views = @{@"tableview": self.tableview};
+    [self.tableview setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableview]|" options:0 metrics:metrics views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableview]|" options:0 metrics:metrics views:views]];
     
     UINib *songCellNib = [UINib nibWithNibName:@"LBHomeSongCell" bundle:nil];
     [self.tableview registerNib:songCellNib forCellReuseIdentifier:[LBHomeSongCell reusableCellWithIdentifier]];
@@ -99,16 +104,10 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
     //set seperator style
     [self.tableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    
     //set status bar
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars=NO;
     self.automaticallyAdjustsScrollViewInsets=YES;
-    
-    
-    //clear cache
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
     
     //initiate menu popup view
     NSMutableArray<LBHomeMenuItem *> *menuitems = [NSMutableArray array];
@@ -118,6 +117,13 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
     [menuitems addObjectsFromArray:@[menuItemShare, menuItemAddFavourite]];
     
     menuPopupView = [[LBHomeMenuView alloc] initWithMenuItems:menuitems];
+    
+    //TODO: Adding Infinite Scrolling
+    __weak LBHomeViewController *weakself = self;
+    [self.tableview addInfiniteScrollingWithActionHandler:^{
+       
+        [weakself.presenterDelegate updateView];
+    }];
 }
 
 
@@ -125,7 +131,7 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
     
     [super viewWillAppear:animated];
     
-    [_presenterDelegate updateView:mediaType];
+    [_presenterDelegate updateView];
 }
 
 
@@ -135,18 +141,14 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     
-    if (self.songs.count > 0) return 3;
-    
-    return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     
     if (section == TableSectionTypeSong) {
         return _songs.count;
@@ -160,13 +162,12 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
 }
 
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LBMedia *media = indexPath.section == TableSectionTypeSong ? [_songs objectAtIndex:indexPath.row
                                                                   ] : [_videos objectAtIndex:indexPath.row];
     LBPhoto *photo = media.image;
+    
     
     if (indexPath.section == TableSectionTypeSong) {
         
@@ -191,6 +192,7 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
         songCell.NumCommentLbl.text = [NSString stringWithFormat:@"Giá %d", [media.price intValue]];
         songCell.song = (LBSong*)media;
         songCell.indexPathInTableView = indexPath;
+        songCell.delegate = self;
         
         //display seperator image at the bottom of cell
         UIImageView *seperatorImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator_cell.png"]];
@@ -211,8 +213,6 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
         
         [videoCell.VideoImg sd_setImageWithURL:photo.url placeholderImage:[UIImage imageNamed:@"image_placeholder.png"] options:videoDownloadOptions progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             
-            //  NSLog(@"%@:%@:%d/%d", media.name, media.image.url, receivedSize, expectedSize);
-            
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
         }];
@@ -221,30 +221,14 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
         [videoCell setVideoInfo:(LBVideo *)media];
         [videoCell setupUI];
         
-        //display seperator image at the bottom of cell
-        UIImageView *seperatorImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator_cell.png"]];
-        seperatorImgView.frame = CGRectMake(0, [LBHomeVideoCell heightForVideoCell] - 1 , HOMENEW_CELL_WIDTH_NEW, 1);
-        
-        [videoCell.contentView addSubview:seperatorImgView];
-        
         return videoCell;
         
     } else if (indexPath.section == TableSectionTypeFavourite) {
         
         //TODO: Favourite - load cell
-        CGRect favouriteCellFrame = CGRectMake(0, 0, self.tableview.bounds.size.width, [LBHomeFavouriteCell heightForFavouriteCell] - [LBHomeFavouriteCell marginY]*2);
-        
-        CGSize favouriteCellContentSize = CGSizeMake(self.tableview.bounds.size.width * 2, [LBHomeFavouriteCell heightForFavouriteCell] - [LBHomeFavouriteCell marginY]*2);
-        
-        LBHomeFavouriteCell *favouriteCell = [[LBHomeFavouriteCell alloc] initWithFrameAndContentSize: favouriteCellFrame contentSize:favouriteCellContentSize];
+        LBHomeFavouriteCell *favouriteCell = [[LBHomeFavouriteCell alloc] init];
         
         [favouriteCell setFavourites:_favourites];
-        
-        //display seperator image at the bottom of cell
-        UIImageView *seperatorImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator_cell.png"]];
-        seperatorImgView.frame = CGRectMake(0, [LBHomeFavouriteCell heightForFavouriteCell] - 1 , HOMENEW_CELL_WIDTH_NEW, 1);
-        
-        [favouriteCell.contentView addSubview:seperatorImgView];
         
         return favouriteCell;
     }
@@ -275,7 +259,6 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
 #pragma mark - Table view Delegates
 
 
-
 #pragma mark - LBHomeNewSongCellDelegate
 -(void)tapOnMenuPopup:(NSIndexPath *)indexPath {
     
@@ -294,8 +277,6 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
 }
 
 
-
-
 #pragma mark - Menu popup actions
 -(void)tapMenuShare:(id)sender {
     
@@ -310,44 +291,24 @@ typedef NS_ENUM(NSUInteger, TableSectionType) {
 #pragma mark - LBHomeViewInterface implementation
 -(void)showUpcomingData:(NSArray<LBMedia *> *)medias {
     
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-        [self.tableview beginUpdates];
-        
-        int curItemIndex = 0;
-        
         
         for (LBMedia *media in medias) {
             
             if ([media isKindOfClass:[LBSong class]]) {
                 
-                curItemIndex = self.songs.count ? self.songs.count : 0;
-                [insertIndexPaths addObject:[NSIndexPath indexPathForRow:self.songs.count inSection:TableSectionTypeSong]];
+          
                 [self.songs addObject:(LBSong*) media];
             } else if ([media isKindOfClass:[LBVideo class]]) {
                 
-                curItemIndex = self.videos.count ? self.videos.count : 0;
-                [insertIndexPaths addObject:[NSIndexPath indexPathForRow:self.videos.count inSection:TableSectionTypeVideo]];
-                [self.videos addObject:(LBVideo*) media];
+                             [self.videos addObject:(LBVideo*) media];
             }
             
             [self.favourites addObject:media];
         }
         
-        //programmatically insert Favourite section due to have only 1 row
-        [insertIndexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:TableSectionTypeFavourite]];
-        
-        if ([self.tableview numberOfSections] == 0) {
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)];
-            [self.tableview insertSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-        }
-        
-        [self.tableview insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-        [self.tableview endUpdates];
-        
         [self.tableview reloadData];
+        [self.tableview.infiniteScrollingView stopAnimating];
     });
     
     

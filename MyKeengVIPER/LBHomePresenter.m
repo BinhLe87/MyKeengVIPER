@@ -38,10 +38,15 @@ static const int NUM_ROW_PER_PAGE_NEW = 10;
 }
 
 #pragma mark - LBHomeModuleInterface implementation
--(void)updateView:(LBMediaType)dataType {
+-(void)updateView {
     
+    if (curPageIdx > 1) {
+        
+        mediaType = LBMediaTypeSong;
+    }
     
     [self.selfDelegate getListMedia:curPageIdx size:NUM_ROW_PER_PAGE_NEW willGetDataType:mediaType];
+    curPageIdx++;
 }
 
 

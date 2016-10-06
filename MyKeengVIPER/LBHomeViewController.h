@@ -15,9 +15,9 @@
 
 @protocol LBPhotoDownloaderDelegate;
 @protocol LBPhotoFiltrationDelegate;
+@protocol LBHomeSongCellDelegate;
 
-
-@interface LBHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, LBHomeViewInterface, UINavigationControllerDelegate> {
+@interface LBHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, LBHomeViewInterface, UINavigationControllerDelegate, LBHomeSongCellDelegate> {
 
     LBHomeMenuView *menuPopupView;
 }

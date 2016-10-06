@@ -124,7 +124,7 @@ const CGFloat kArrowSize = 2.f;
     
     
     _contentView = [self generateContentView];
-    _contentView.backgroundColor = [UIColor grayColor];
+    _contentView.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:_contentView];
     
     [self setupFrameInView:rootView fromRect:fromOwnerRect];

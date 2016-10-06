@@ -18,12 +18,14 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    //NSLog(@"Layout of VideoCell: %@", self.contentView.constraints);
 }
 
 -(void)layoutSubviews {
     
-    self.infoView.layer.sublayers = nil;
-    
+    //TODO:gradient layer for infoView
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
     gradient.colors = @ [(id)[[UIColor clearColor] CGColor],(id)[[UIColor colorWithWhite:0.3 alpha:0.1] CGColor],
@@ -32,14 +34,15 @@
     gradient.startPoint = CGPointMake(0.0, 0.0);
     gradient.endPoint = CGPointMake(0.5, 1.0);
     
+    
+    
     [self.infoView.layer insertSublayer:gradient atIndex:0];
+    
+    //TODO: custom constraints
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 +(NSString *)reusableCellWithIdentifier {
     
@@ -55,8 +58,6 @@
 -(void)setVideoInfo:(LBVideo *)videoInfo {
  
     _videoInfo = videoInfo;
-//    [self addObserver:self forKeyPath:@"videoInfo.image.hasImage" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-//    [self addObserver:self forKeyPath:@"videoInfo.image.failed" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
 }
 
 

@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *NumLikeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *NumCommentLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *VideoImg;
-@property (weak, nonatomic) IBOutlet UIStackView *footerView;
+
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 
 @property (weak, nonatomic) LBVideo *videoInfo;
