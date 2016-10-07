@@ -377,6 +377,11 @@
 		AB7028261DA60BC90071CD19 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7028191DA60BC90071CD19 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		AB7028271DA60BC90071CD19 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB70281B1DA60BC90071CD19 /* View+MASAdditions.m */; };
 		AB7028281DA60BC90071CD19 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB70281E1DA60BC90071CD19 /* ViewController+MASAdditions.m */; };
+		AB7250FC1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7250FB1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.m */; };
+		AB7251011DA737360054FBD3 /* UIImage+Default.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7251001DA737360054FBD3 /* UIImage+Default.m */; };
+		AB7251041DA745500054FBD3 /* UIImage+AsyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7251031DA745500054FBD3 /* UIImage+AsyncDownload.m */; };
+		AB7251081DA74A560054FBD3 /* LBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7251071DA74A560054FBD3 /* LBDownloadManager.m */; };
+		AB72510C1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB72510A1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodeld */; };
 		ABC68F871DA1F67000A61801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC68F861DA1F67000A61801 /* main.m */; };
 		ABC68F921DA1F67000A61801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC68F911DA1F67000A61801 /* Assets.xcassets */; };
 		ABC68FB01DA200E500A61801 /* LBHomeFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC68FAF1DA200E500A61801 /* LBHomeFavouriteCell.m */; };
@@ -831,6 +836,15 @@
 		AB70281C1DA60BC90071CD19 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		AB70281D1DA60BC90071CD19 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		AB70281E1DA60BC90071CD19 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		AB7250FA1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeFavouriteAvatarView.h; sourceTree = "<group>"; };
+		AB7250FB1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeFavouriteAvatarView.m; sourceTree = "<group>"; };
+		AB7250FF1DA737360054FBD3 /* UIImage+Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Default.h"; sourceTree = "<group>"; };
+		AB7251001DA737360054FBD3 /* UIImage+Default.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Default.m"; sourceTree = "<group>"; };
+		AB7251021DA745500054FBD3 /* UIImage+AsyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AsyncDownload.h"; sourceTree = "<group>"; };
+		AB7251031DA745500054FBD3 /* UIImage+AsyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AsyncDownload.m"; sourceTree = "<group>"; };
+		AB7251061DA74A560054FBD3 /* LBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDownloadManager.h; sourceTree = "<group>"; };
+		AB7251071DA74A560054FBD3 /* LBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDownloadManager.m; sourceTree = "<group>"; };
+		AB72510B1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyKeengVIPER.xcdatamodel; sourceTree = "<group>"; };
 		ABC68F821DA1F67000A61801 /* MyKeengVIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKeengVIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC68F861DA1F67000A61801 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ABC68F911DA1F67000A61801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1030,6 +1044,34 @@
 			name = "Masonry-Autolayout";
 			sourceTree = "<group>";
 		};
+		AB7250FE1DA7370A0054FBD3 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				AB7250FF1DA737360054FBD3 /* UIImage+Default.h */,
+				AB7251001DA737360054FBD3 /* UIImage+Default.m */,
+				AB7251021DA745500054FBD3 /* UIImage+AsyncDownload.h */,
+				AB7251031DA745500054FBD3 /* UIImage+AsyncDownload.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		AB7251051DA74A2C0054FBD3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AB7251061DA74A560054FBD3 /* LBDownloadManager.h */,
+				AB7251071DA74A560054FBD3 /* LBDownloadManager.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		AB7251091DA77F350054FBD3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				AB72510A1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		ABC68F791DA1F67000A61801 = {
 			isa = PBXGroup;
 			children = (
@@ -1102,6 +1144,8 @@
 		ABC68F9F1DA1F9D500A61801 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AB7251051DA74A2C0054FBD3 /* Helpers */,
+				AB7250FE1DA7370A0054FBD3 /* Categories */,
 				AB0ABC621DA38EBA00A2FD5A /* View */,
 				ABC68FE81DA23F9800A61801 /* Constants */,
 				ABC68FA91DA1FDB700A61801 /* Store */,
@@ -1200,6 +1244,7 @@
 		ABC68FA91DA1FDB700A61801 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				AB7251091DA77F350054FBD3 /* CoreData */,
 				ABC68FAA1DA1FDBE00A61801 /* Entities */,
 			);
 			name = Store;
@@ -1241,6 +1286,8 @@
 			children = (
 				ABC68FAE1DA200E500A61801 /* LBHomeFavouriteCell.h */,
 				ABC68FAF1DA200E500A61801 /* LBHomeFavouriteCell.m */,
+				AB7250FA1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.h */,
+				AB7250FB1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.m */,
 			);
 			name = FavouriteCell;
 			sourceTree = "<group>";
@@ -2234,6 +2281,8 @@
 				AB66E7671DA4BB0D00C2BFD8 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				ABC690B91DA26D8E00A61801 /* SDWebImageManager.m in Sources */,
 				ABC690C01DA26D8E00A61801 /* UIImageView+WebCache.m in Sources */,
+				AB7251041DA745500054FBD3 /* UIImage+AsyncDownload.m in Sources */,
+				AB7251081DA74A560054FBD3 /* LBDownloadManager.m in Sources */,
 				ABC690B81DA26D8E00A61801 /* SDWebImageDownloaderOperation.m in Sources */,
 				ABC690C21DA26D8E00A61801 /* ALAirplayView.m in Sources */,
 				ABC68FEE1DA2419B00A61801 /* LBHomeMediaInteractor.m in Sources */,
@@ -2256,6 +2305,7 @@
 				ABC690021DA2622800A61801 /* LBMedia.m in Sources */,
 				AB0ABC5D1DA36AF300A2FD5A /* LBAppDependencies.m in Sources */,
 				ABC68FE71DA23BDF00A61801 /* LBHomePhotoFiltration.m in Sources */,
+				AB7250FC1DA735C50054FBD3 /* LBHomeFavouriteAvatarView.m in Sources */,
 				AB7028281DA60BC90071CD19 /* ViewController+MASAdditions.m in Sources */,
 				AB3C85A31DA344CC00FC27F5 /* LBHomePresenter.m in Sources */,
 				ABC68FC21DA203EB00A61801 /* LBHomeVideoCell.m in Sources */,
@@ -2264,7 +2314,9 @@
 				ABC690C41DA26D8E00A61801 /* ALMoviePlayerController.m in Sources */,
 				AB7028041DA5F9AE0071CD19 /* LBHomeView.m in Sources */,
 				AB7028231DA60BC90071CD19 /* MASViewAttribute.m in Sources */,
+				AB7251011DA737360054FBD3 /* UIImage+Default.m in Sources */,
 				ABC690B61DA26D8E00A61801 /* SDWebImageDecoder.m in Sources */,
+				AB72510C1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodeld in Sources */,
 				AB7028201DA60BC90071CD19 /* MASConstraint.m in Sources */,
 				ABC690B11DA26D8E00A61801 /* CAPSPageMenu.m in Sources */,
 				AB0ABC681DA3914900A2FD5A /* LBMyKeengRootViewController.m in Sources */,
@@ -2423,6 +2475,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB72510A1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB72510B1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodel */,
+			);
+			currentVersion = AB72510B1DA77F4D0054FBD3 /* MyKeengVIPER.xcdatamodel */;
+			path = MyKeengVIPER.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ABC68F7A1DA1F67000A61801 /* Project object */;
 }

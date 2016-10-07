@@ -9,6 +9,8 @@
 #import "LBHomeFavouriteCell.h"
 #import "UIImageView+WebCache.h"
 #import "Masonry.h"
+#import "LBHomeFavouriteAvatarView.h"
+#import "UIImage+AsyncDownload.h"
 
 static int leftRightPadding = 2;
 
@@ -20,7 +22,7 @@ static int leftRightPadding = 2;
     if (!(self = [super init])) return nil;
     
     _scrollView = [[UIScrollView alloc] init];
-    _scrollView.backgroundColor = [UIColor lightGrayColor];
+    _scrollView.backgroundColor = [UIColor clearColor];
     _scrollView.bounces = NO;
     
     [self.contentView addSubview:_scrollView];
@@ -39,23 +41,37 @@ static int leftRightPadding = 2;
     
     [medias enumerateObjectsUsingBlock:^(LBMedia * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        UIImageView *imageFav = [[UIImageView alloc] init];
-        [_scrollView addSubview:imageFav];
-        SDWebImageOptions songDownloadOptions = SDWebImageProgressiveDownload | SDWebImageContinueInBackground | SDWebImageTransformAnimatedImage;
+        LBHomeFavouriteAvatarView *favView = [[LBHomeFavouriteAvatarView alloc] init];
+        [_scrollView addSubview:favView];
+        [favView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
-        [imageFav sd_setImageWithURL:obj.image.url placeholderImage:[UIImage imageNamed:@"image_placeholder.png"] options:songDownloadOptions];
+        __block UIImage *favImage = [UIImage imageNamed:@"image_placeholder.png"];
         
-        [imageFav mas_makeConstraints:^(MASConstraintMaker *make) {
+        [UIImage asyncDownloadWithURL:obj.image.url ownerImage:favView completion:^(UIImage *image, id ownerImage) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                LBHomeFavouriteAvatarView *favView = (LBHomeFavouriteAvatarView *)ownerImage;
+                favView.image = image;
+                
+            });
+        }];
+        
+    
+        favView.image = favImage;
+        
+        [favView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.mas_equalTo(_scrollView.mas_height).offset(-3);
             make.width.mas_equalTo(_scrollView.mas_height).offset(-3);
             make.centerY.equalTo(_scrollView.mas_centerY);
-            
-        }];
+        }];    
     }];
+    
+    [self updateConstraints];
 }
 
--(void)layoutSubviews {
+-(void)updateConstraints {
     
     [_scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -66,7 +82,12 @@ static int leftRightPadding = 2;
         }];
         
     }];
+    
+    //according to apple super should be called at end of method
+    [super updateConstraints];
 }
+
+
 
 
 +(CGFloat)heightForFavouriteCell {
